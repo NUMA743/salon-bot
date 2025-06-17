@@ -44,6 +44,15 @@ fetch(GAS_URL, {
 })
 .then(res => console.log("✅ Google Apps Scriptに送信成功！"))
 .catch(err => console.error("❌ 送信エラー", err));
+fetch(GAS_URL, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(postData)
+})
+.then(res => console.log("✅ Google Apps Scriptに送信成功！"))
+.catch(err => console.error("❌ 送信エラー", err));
 
   console.log("🌟 メッセージ受信！");
   console.log("ユーザー:", event.source.userId);
