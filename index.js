@@ -25,7 +25,6 @@ const note = parts.slice(3).join(" ") || "";
 
 // 送信用のデータを用意
 const postData = {
- const postData = {
   name,
   date,
   menu,
