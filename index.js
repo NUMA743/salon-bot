@@ -14,13 +14,17 @@ app.use(express.json());
 app.post("/webhook", (req, res) => {
   Promise.all(
     req.body.events.map((event) => {
-      if (event.type === "message" && event.message.type === "text") {
-        console.log("ユーザー:", event.message.text); // ← これでログに表示される！
-        return client.replyMessage(event.replyToken, {
-          type: "text",
-          text: `「${event.message.text}」を受け取りました！`,
-        });
-      }
+     if (event.type === "message" && event.message.type === "text") {
+  console.log("🌟 メッセージ受信！");
+  console.log("ユーザー:", event.source.userId);
+  console.log("内容:", event.message.text);
+
+  return client.replyMessage(event.replyToken, {
+    type: "text",
+    text: `「${event.message.text}」を受け取りました！`
+  });
+}
+
     })
   )
     .then(() => res.status(200).end())
