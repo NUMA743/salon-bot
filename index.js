@@ -16,13 +16,22 @@ app.post("/webhook", (req, res) => {
     req.body.events.map((event) => {
      if (event.type === "message" && event.message.type === "text") {// Google Apps ScriptのURL
 const GAS_URL = "https://script.google.com/macros/s/AKfycbyIjuCDCTkArGZyj30AwJ1dhNjxXapjmKVRBdmdfh0RmfUp9eiUR_Sqg8CZJ3ig4dPD/exec"; // さっき出たURL
+// ユーザーが送ったメッセージを分割する（空白で4分割）
+const parts = event.message.text.split(" ");
+const name = parts[0] || "";
+const date = parts[1] || "";
+const menu = parts[2] || "";
+const note = parts.slice(3).join(" ") || "";
 
 // 送信用のデータを用意
 const postData = {
-  name: "テスト太郎",         // ← 本番ではユーザー名などに置き換える
-  date: "2025-06-17 15:00",  // ← 本番では予約日などに置き換える
-  menu: "カット",             // ← メニュー内容に置き換え
-  note: event.message.text   // ユーザーが送ってきたテキストをそのまま記録
+ const postData = {
+  name,
+  date,
+  menu,
+  note
+};
+
 };
 
 // POST送信
